@@ -7,6 +7,7 @@ class Menu extends Phaser.Scene{
         this.load.audio('sfx_select', './assets/blip_select12.wav');
         this.load.audio('sfx_explosion', './assets/explosion38.wav');
         this.load.audio('sfx_rocket', './assets/rocket_shot.wav');
+        this.load.image('title', './assets/title.png');
     }
     create() {
          //score display
@@ -35,12 +36,18 @@ class Menu extends Phaser.Scene{
         let centerY = game.config.height/2;
         let textSpacer = 64;
 
-        this.add.text(centerX, centerY - textSpacer, 'ROCKET PATROL', menuConfig).setOrigin(0.5);
-        this.add.text(centerX, centerY, 'Use ← → arrows to move & (F) to Fire', menuConfig).setScale(1).setOrigin(0.5);
-        menuConfig.backgroundColor = "#00FF00";
-        menuConfig.color = '#000';
-        this.add.text(centerX, centerY + textSpacer, 'Press ← for Easy or → for Hard', menuConfig).setOrigin(0.5);
+        //stardropper title/menu screen
+        this.add.image(game.config.width/2,game.config.height/2,'title');
 
+        
+        //this.add.text(centerX, centerY - textSpacer, 'ROCKET PATROL', menuConfig).setOrigin(0.5);
+       // this.add.text(centerX, centerY, 'Use ← → arrows to move & (F) to Fire', menuConfig).setScale(1).setOrigin(0.5);
+        //menuConfig.backgroundColor = "#00FF00";
+        //menuConfig.color = '#000';
+       // this.add.text(centerX, centerY + textSpacer, 'Press ← for Easy or → for Hard', menuConfig).setOrigin(0.5);
+    
+
+        
 
         //define keys
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);

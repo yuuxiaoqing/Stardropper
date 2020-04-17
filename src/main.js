@@ -18,4 +18,12 @@ game.settings = {
 //reserve some keyboard variables
 let keyF, keyLEFT, keyRIGHT;
 
+//loading google text, taken from: https://phaser.io/examples/v2/text/google-webfonts
+let WebFontConfig = {
+    active: function() { game.time.events.add(Phaser.Timer.SECOND,createText, this);},
 
+    google: {
+        families: ['Shadows Into Light', 'Permanent Marker']
+    }
+
+};
