@@ -17,6 +17,7 @@ game.settings = {
 }
 //reserve some keyboard variables
 let keyF, keyLEFT, keyRIGHT;
+//reserve player 2 keyboard var
 
 //loading google text, taken from: https://phaser.io/examples/v2/text/google-webfonts
 let WebFontConfig = {
@@ -27,3 +28,5 @@ let WebFontConfig = {
     }
 
 };
+
+

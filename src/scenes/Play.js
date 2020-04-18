@@ -19,7 +19,7 @@ class Play extends Phaser.Scene{
         this.load.image('star3', 'assets/star3.png');
         this.load.image('sky', 'assets/sky.png');
         //load burst128 atlas
-        this.load.atlas('burst128', '.assets/burst128.png', './assets/burst128.json');
+        this.load.atlas('burst128', './assets/burst128.png', './assets/burst128.json');
         //load spritesheet
         this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame:0, endFrame: 9});
     }
@@ -32,13 +32,15 @@ class Play extends Phaser.Scene{
         //bottom bar
         this.add.rectangle(5,433,630,32,0xFFD85E).setOrigin(0,0) 
        
-        //declare rocket
+        //declare rockets
         this.p1Rocket = new Rocket(this, game.config.width/2, 420, 'rocket').setScale(0.5,0.5).setOrigin(0,0);
-
-        //add spaceship
-        this.ship01 = new Spaceship(this, game.config.width +192, 132, 'star5', 0, 30).setOrigin(0,0);
-        this.ship02 = new Spaceship(this, game.config.width +92, 196, 'star4', 0, 20).setOrigin(0,0);
-        this.ship03 = new Spaceship(this, game.config.width , 260, 'star1', 0, 10).setOrigin(0,0);
+        //this.p2Rocket = new Rocket(this, game.config.width/2, 420, 'rocket').setScale(0.5,0.5).setOrigin(0,0);
+        //add spaceships
+        //add more spaceships
+        this.shipHeight = (Math.floor(Math.random()*game.config.height-100)+100);
+        this.ship01 = new Spaceship(this, game.config.width +192, (Math.floor(Math.random()*game.config.height-80)+30), 'star5', 0, 30).setOrigin(0,0);
+        this.ship02 = new Spaceship(this, game.config.width +92, (Math.floor(Math.random()*game.config.height-80)+30), 'star4', 0, 20).setOrigin(0,0);
+        this.ship03 = new Spaceship(this, game.config.width , (Math.floor(Math.random()*game.config.height-80)+30), 'star3', 0, 10).setOrigin(0,0);
         //define keyboard keys
         keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
@@ -84,26 +86,8 @@ class Play extends Phaser.Scene{
             this.gameOver = true;
         }, null, this);
 
-        /*
-         // particle effect from https://phaser.io/examples/v3/view/game-objects/particle-emitter/particle-processor
-        var particles = this.add.particles('star1');
-        particles.createEmitter({
-            frame: ['star1'],
-            x: 500,
-            y: 30,
-            lifespan: 400,
-            speed:20,
-            scale: {start: 0.7, end: 0},
-            blendMode: 'ADD'
-            
-        });
-        */
-
-
-        //testing sprite
-        this.burst01 = this.add.sprite(game.config.width/2, game.config.height/2, 'burst128', 'burst1');
-
-
+       
+    
     }
 
   
@@ -170,29 +154,41 @@ class Play extends Phaser.Scene{
         ship.alpha=0; 
 
 
-
-
-
-        //REPLACE WITH PARTICLE EFFECT
-        //create explosion sprite at ship's position
-        let boom = this.add.sprite(ship.x, ship.y, 'explosion').setOrigin(0,0);
-        boom.anims.play('explode');  //play eplode animation
-        boom.on('animationcomplete', () => { //callback after animation completes
-            //testing sprite
-            this.effect = this.add.image(ship.x, ship.y, 'star2');
-            //this.burst01 = this.add.sprite(ship.x, ship.y, 'burst', 'burst1');
-            ship.reset(); //reset ship position
-            ship.alpha =1; //make ship visible again
-            boom.destroy(); //remove explosion sprite
-        });
         
+       
+    
+        // particle effect from https://phaser.io/examples/v3/view/game-objects/particle-emitter/particle-processor and
+        // https://phaser.io/examples/v3/view/game-objects/particle-emitter/create-emitter
+        // https://photonstorm.github.io/phaser3-docs/Phaser.GameObjects.Particles.Particle.html
+        
+
+        var particles = this.add.particles('star1'); //add image for particle
+        
+        var emitter = particles.createEmitter({ //define emitter
+           
+            speed:100,
+            quantity:1,
+            scale: 0.8,
+            blendMode: 'ADD'
+   
+        });
+    
       
+        //create emitter explode effect 
+        emitter.explode(30, ship.x, ship.y);
+        
+        //add random burst after effect onto screen
+        this.burst01 = this.add.sprite(ship.x, ship.y, 'burst128', 'burst'+(Math.floor(Math.random()*4)+1));
+        ship.reset(); //reset ship position
+        ship.alpha =1; //make ship visible again
+
         //score increment and repaint
         this.p1Score += ship.points;
         this.scoreLeft.text = this.p1Score + " ★";
-        this.sound.play('sfx_explosion');
+        //this.sound.play('sfx_explosion');
 
     }
+
 
    
 }
