@@ -10,7 +10,8 @@ class Menu extends Phaser.Scene{
         this.load.image('title', './assets/title.png');
     }
     create() {
-         //score display
+         //text display
+         /*
          let menuConfig = {
             fontFamily: 'Courier',
             fontSize: '28px',
@@ -24,30 +25,9 @@ class Menu extends Phaser.Scene{
             fixedWidth: 0
 
         }
-    //override create() from phaser, which is blank
-        //console.log(this);
-        //display menu text
-        //this.add.text(20,20,"Rocket Patrol Menu");
-        //launch the next scene "play"
-        //this.scene.start("playScene");
-
-        //show menu text
-        let centerX = game.config.width/2;
-        let centerY = game.config.height/2;
-        let textSpacer = 64;
-
+        */
         //stardropper title/menu screen
         this.add.image(game.config.width/2,game.config.height/2,'title');
-
-        
-        //this.add.text(centerX, centerY - textSpacer, 'ROCKET PATROL', menuConfig).setOrigin(0.5);
-       // this.add.text(centerX, centerY, 'Use ← → arrows to move & (F) to Fire', menuConfig).setScale(1).setOrigin(0.5);
-        //menuConfig.backgroundColor = "#00FF00";
-        //menuConfig.color = '#000';
-       // this.add.text(centerX, centerY + textSpacer, 'Press ← for Easy or → for Hard', menuConfig).setOrigin(0.5);
-    
-
-        
 
         //define keys
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
@@ -59,7 +39,7 @@ class Menu extends Phaser.Scene{
 
     update(){
         if (Phaser.Input.Keyboard.JustDown(keyLEFT)){
-            //EASY
+            //EASY level
             game.settings = {
                 spaceshipSpeed:3,
                 gameTimer:60000
@@ -69,10 +49,10 @@ class Menu extends Phaser.Scene{
 
         }
         if (Phaser.Input.Keyboard.JustDown(keyRIGHT)){
-            //HARD
+            //HARD level
             game.settings = {
-                spaceshipSpeed:4,
-                gameTimer:45000
+                spaceshipSpeed:5,
+                gameTimer:25000
             }
             this.sound.play('sfx_select');
             this.scene.start("playScene");

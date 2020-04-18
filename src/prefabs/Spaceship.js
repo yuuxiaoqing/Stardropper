@@ -13,7 +13,6 @@ class Spaceship extends Phaser.GameObjects.Sprite{
         // wrap around screen bounds
         if(this.x <=0 - this.width){
             this.reset();
-            //this.x =game.config.width;
         }
        
     }

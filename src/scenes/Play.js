@@ -17,28 +17,22 @@ class Play extends Phaser.Scene{
         this.load.image('star4', 'assets/star4.png');
         this.load.image('star5', 'assets/star5.png');
         this.load.image('star3', 'assets/star3.png');
-        this.load.image('starfield', 'assets/sky.png');
+        this.load.image('sky', 'assets/sky.png');
+        //load burst128 atlas
+        this.load.atlas('burst128', '.assets/burst128.png', './assets/burst128.json');
         //load spritesheet
         this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame:0, endFrame: 9});
     }
     create() {
     //override create() from phaser, which is blank
-        //console.log(this);
 
         //place tile sprite
-        this.starfield = this.add.tileSprite(0,0,640,480,"starfield").setOrigin(0,0);
-        // white rectangle borders (x, y, width, height, color)
-        
-        //this.add.rectangle(5,5,630,32,0xFFD85E).setOrigin(0,0) 
+        this.sky = this.add.tileSprite(0,0,640,480,"sky").setOrigin(0,0);
+       
+        //bottom bar
         this.add.rectangle(5,433,630,32,0xFFD85E).setOrigin(0,0) 
-        //this.add.rectangle(5,5,32,455,0xFFFFFF).setOrigin(0,0) 
-        //this.add.rectangle(603,5,32,455,0xFFFFFF).setOrigin(0,0) 
-     
-        // green UI background
-        //this.add.rectangle(37,42,566,64,0X00FF00).setOrigin(0,0);
-                                             
-        // add rocket (p1)
-        // constructor(scene, x, y, texture, frame)
+       
+        //declare rocket
         this.p1Rocket = new Rocket(this, game.config.width/2, 420, 'rocket').setScale(0.5,0.5).setOrigin(0,0);
 
         //add spaceship
@@ -60,13 +54,12 @@ class Play extends Phaser.Scene{
         //score 
         this.p1Score = 0;
 
-        //score display
-      
+       
+
+        //score + endscreen text display settings
         let scoreConfig = {
             fontFamily: 'Shadows Into Light',
-            //fontStyle: 'cursive',
             fontSize: '28px',
-            //backgroundColor: '#FFD85E',
             color: '#FFD85E',
             align: 'right',
             padding: {
@@ -86,7 +79,7 @@ class Play extends Phaser.Scene{
         // 60-second play clock
         scoreConfig.fixedWidth = 0;
         this.clock = this.time.delayedCall(game.settings.gameTimer, ()=>{
-            this.add.text(game.config.width/2, game.config.height/2 - 120, 'GAME OVER', scoreConfig).setOrigin(0.5);
+            this.add.text(game.config.width/2, game.config.height/2 - 200, 'GAME OVER', scoreConfig).setOrigin(0.5);
             this.add.text(game.config.width/2, game.config.height/2 + 100, '(F)ire to restart or ← for Menu', scoreConfig).setOrigin(0.5);
             this.gameOver = true;
         }, null, this);
@@ -107,6 +100,10 @@ class Play extends Phaser.Scene{
         */
 
 
+        //testing sprite
+        this.burst01 = this.add.sprite(game.config.width/2, game.config.height/2, 'burst128', 'burst1');
+
+
     }
 
   
@@ -117,8 +114,8 @@ class Play extends Phaser.Scene{
         if(this.gameOver && Phaser.Input.Keyboard.JustDown(keyF)){
             this.scene.restart(this.p1Score);
         }
-        //scroll starfield
-        this.starfield.tilePositionX -=4;
+        //scroll sky
+        this.sky.tilePositionX -=4;
 
         if (!this.gameOver){
              //update rocket
@@ -181,8 +178,9 @@ class Play extends Phaser.Scene{
         let boom = this.add.sprite(ship.x, ship.y, 'explosion').setOrigin(0,0);
         boom.anims.play('explode');  //play eplode animation
         boom.on('animationcomplete', () => { //callback after animation completes
-            //draws a star where last star died
-            this.effect = this.add.image(ship.x, ship.y,'star3').setOrigin(0,0);
+            //testing sprite
+            this.effect = this.add.image(ship.x, ship.y, 'star2');
+            //this.burst01 = this.add.sprite(ship.x, ship.y, 'burst', 'burst1');
             ship.reset(); //reset ship position
             ship.alpha =1; //make ship visible again
             boom.destroy(); //remove explosion sprite
