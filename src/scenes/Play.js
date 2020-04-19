@@ -95,8 +95,10 @@ class Play extends Phaser.Scene{
         scoreConfig.fixedWidth = 0;
         var winner;
         this.clock = this.time.delayedCall(game.settings.gameTimer, ()=>{
-            if(this.scoreLeft > this.scoreRight){ winner = "player 1";} else {winner = "player 2";}
-            this.add.text(game.config.width/2, game.config.height/2 - 210, winner + ' wins!', scoreConfig).setOrigin(0.5);
+            if(this.scoreLeft > this.scoreRight){ winner = "player 1 wins!";} 
+            else if( this.scoreLeft<this.scoreRight) {winner = "player 2 wins!";}
+            else{winner = "it's a tie!"}
+            this.add.text(game.config.width/2, game.config.height/2 - 210, winner, scoreConfig).setOrigin(0.5);
             this.add.text(game.config.width/2, game.config.height/2 + 225, 'Press F to restart or ← for Menu', scoreConfig).setOrigin(0.5);
             this.gameOver = true;
         }, null, this);
