@@ -1,3 +1,4 @@
+//two player mode
 class Play extends Phaser.Scene{
     constructor(){
         super("playScene");
@@ -67,7 +68,7 @@ class Play extends Phaser.Scene{
 
         this.p2Score = 0;
        
-
+        
         //score + endscreen text display settings
         let scoreConfig = {
             fontFamily: 'Shadows Into Light',
@@ -93,12 +94,13 @@ class Play extends Phaser.Scene{
     
         // endgame message
         scoreConfig.fixedWidth = 0;
-        var winner;
+
+       
+     
         this.clock = this.time.delayedCall(game.settings.gameTimer, ()=>{
-            if(this.scoreLeft > this.scoreRight){ winner = "player 1 wins!";} 
-            else if( this.scoreLeft<this.scoreRight) {winner = "player 2 wins!";}
-            else{winner = "it's a tie!"}
-            this.add.text(game.config.width/2, game.config.height/2 - 210, winner, scoreConfig).setOrigin(0.5);
+            
+            
+            //this.add.text(game.config.width/2, game.config.height/2 - 210, winner, scoreConfig).setOrigin(0.5);
             this.add.text(game.config.width/2, game.config.height/2 + 225, 'Press F to restart or ← for Menu', scoreConfig).setOrigin(0.5);
             this.gameOver = true;
         }, null, this);
@@ -107,16 +109,43 @@ class Play extends Phaser.Scene{
     
     }
 
-  
+    
     update(){
+        var winner;
+
+        let scoreConfig = {
+            fontFamily: 'Shadows Into Light',
+            fontSize: '28px',
+            color: '#FFD85E',
+            align: 'right',
+            padding: {
+                top: 5,
+                bottom: 5,
+            },
+            fixedWidth: 100
+
+        }
+
+        // endgame message
+        scoreConfig.fixedWidth = 0;
+        var t = true;
+       
+        if(this.gameOver && t == true){
+            if(this.p1Score > this.p2Score){winner = "p l a y e r  1  w i n s !";}
+            else if (this.p1Score < this.p2Score){winner = 'p l a y e r  2  w i n s !'}
+            else { winner = "i t ' s  a  t i e";}
+            this.add.text(game.config.width/2, game.config.height/2 - 210, winner, scoreConfig).setOrigin(0.5);
+            t = false;
+        }
+        
         //check key input for restart
         if(this.gameOver && Phaser.Input.Keyboard.JustDown(keyF)){
             this.scene.restart(this.p1Score);
         }
         //scroll sky
         this.sky.tilePositionX -=4;
-
-        if (!this.gameOver){
+       
+        if (!this.gameOver ){
              //update rockets
             this.p1Rocket.update();
             this.p2Rocket.update();
@@ -267,7 +296,7 @@ class Play extends Phaser.Scene{
         ship.reset(); //reset ship position
         ship.alpha =1; //make ship visible again
 
-        //this.sound.play('sfx_explosion');
+        this.sound.play('sfx_explosion');
 
     }
 

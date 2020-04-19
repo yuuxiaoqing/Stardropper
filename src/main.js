@@ -3,7 +3,7 @@ let config = {
     type: Phaser.CANVAS, 
     width: 640,
     height: 480,
-    scene: [Menu, Play], // order of the classes matter, phaser does the first one first
+    scene: [Menu, Play] // order of the classes matter, phaser does the first one first
 
 };
 
