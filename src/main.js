@@ -15,9 +15,12 @@ game.settings = {
     spaceshipSpeed: 3,
     gameTimer: 60000
 }
-//reserve some keyboard variables
-let keyF, keyLEFT, keyRIGHT;
-//reserve player 2 keyboard var
+//reserve player1 keyboard variables
+let keyW, keyA, keyD;
+//reserve player2 keyboard variables
+let keyUP, keyLEFT, keyRIGHT;
+//reset key
+let keyF;
 
 //loading google text, taken from: https://phaser.io/examples/v2/text/google-webfonts
 let WebFontConfig = {

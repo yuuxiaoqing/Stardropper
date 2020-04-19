@@ -10,22 +10,7 @@ class Menu extends Phaser.Scene{
         this.load.image('title', './assets/title.png');
     }
     create() {
-         //text display
-         /*
-         let menuConfig = {
-            fontFamily: 'Courier',
-            fontSize: '28px',
-            backgroundColor: '#F3B141',
-            color: '#843605',
-            align: 'right',
-            padding: {
-                top: 5,
-                bottom: 5,
-            },
-            fixedWidth: 0
-
-        }
-        */
+        
         //stardropper title/menu screen
         this.add.image(game.config.width/2,game.config.height/2,'title');
 
@@ -44,7 +29,7 @@ class Menu extends Phaser.Scene{
                 spaceshipSpeed:3,
                 gameTimer:60000
             }
-            this.sound.play('sfx_select');
+            //this.sound.play('sfx_select');
             this.scene.start("playScene");
 
         }
@@ -54,7 +39,7 @@ class Menu extends Phaser.Scene{
                 spaceshipSpeed:5,
                 gameTimer:25000
             }
-            this.sound.play('sfx_select');
+            //this.sound.play('sfx_select');
             this.scene.start("playScene");
         }
     }

@@ -1,7 +1,6 @@
-// Rocket1 prefab
-// WAD
-class Rocket extends Phaser.GameObjects.Sprite{
-    
+// Rocket2 prefab
+// UPLEFTRIGHT
+class Rocket2 extends Phaser.GameObjects.Sprite{
     constructor(scene, x, y, texture, frame){
         super(scene, x, y, texture, frame);
 
@@ -14,15 +13,15 @@ class Rocket extends Phaser.GameObjects.Sprite{
     update(){
         // left/right movement
         if(!this.isFiring){
-            if(keyA.isDown && this.x >= 10){
+            if(keyLEFT.isDown && this.x >= 10){
                 this.x -= 2;
                 
-            }else if (keyD.isDown && this.x <= 630){
+            }else if (keyRIGHT.isDown && this.x <= 630){
                 this.x += 2;
             }
         }
         // fire button 
-        if(Phaser.Input.Keyboard.JustDown(keyW) && !this.isFiring){
+        if(Phaser.Input.Keyboard.JustDown(keyUP) && !this.isFiring){
             this.isFiring = true;
             //this.sfxRocket.play(); //sfx
         }
