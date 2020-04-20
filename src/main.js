@@ -11,7 +11,7 @@ The modded game is a 2 player game. A & D to move and W to shoot for player 1,
 LEFT arrow & RIGHT arrow to move and UP arrow to shoot for player 2. There's a point system
 that keeps track of both players' scores and announces a winner when the game finished.
 
-- User Phaser's particle emitter to create a particle explosion when the rocket hits the spaceship (25) Intermediate TIER
+- Uses Phaser's particle emitter to create a particle explosion when the rocket hits the spaceship (25) Intermediate TIER
 When the rocket hits the stars, the stars explodes into multiple star pieces.
 
 - Create a new title screen (15) Novice TIER
@@ -31,7 +31,7 @@ they shoot the star. I wanted players to feel like they are shooting stars in th
 ------------------------------------------------------------------------------------
 Credits:
 Stardropper is a mod of Professor Altice's Rocket Patrol.
-Theme music by Emily A. Sprague from Youtube free audio library.
+Theme music is "Fairy Meeting" by Emily A. Sprague from Youtube free audio library.
 Explosion and shooting sound effects are also from Youtube free audio library, creator unknown
 Menu selection sound effect from Professor Altice's Rocket Patrol.
 Shadows Into Light font by Kimberly Geswein from https://fonts.google.com/specimen/Shadows+Into+Light?query=shadows
