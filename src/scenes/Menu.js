@@ -3,13 +3,13 @@ class Menu extends Phaser.Scene{
         super("menuScene");
     }
     preload(){
-        //load audio
-        this.load.audio('sfx_select', './assets/blip_select12.wav');
-        this.load.audio('sfx_explosion', './assets/Big_Explosion_Distant.wav');
-        this.load.audio('sfx_rocket', './assets/Laser_Gun.wav');
-        this.load.audio('theme', ['assets/Fairy_Meeting.wav']);
-
+       
         this.load.image('title', './assets/title.png');
+
+         //load audio
+        this.load.audio('sfx_select', './assets/blip_select12.wav');
+       
+ 
     }
     create() {
         

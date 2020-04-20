@@ -11,6 +11,10 @@ class Play extends Phaser.Scene{
         //load google webfont loader script
         this.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
         
+
+        this.load.audio('sfx_explosion', './assets/Big_Explosion_Distant.wav');
+        this.load.audio('sfx_rocket', './assets/Laser_Gun.wav');
+        this.load.audio('theme', ['assets/Fairy_Meeting.wav']);
         //texture
         //rocket art done with pixilart.com 
         this.load.image('rocket1', 'assets/rocket2.png');
@@ -98,23 +102,25 @@ class Play extends Phaser.Scene{
         // endgame message
         scoreConfig.fixedWidth = 0;
 
+        
        
      
         this.clock = this.time.delayedCall(game.settings.gameTimer, ()=>{
-            
             
             //this.add.text(game.config.width/2, game.config.height/2 - 210, winner, scoreConfig).setOrigin(0.5);
             this.add.text(game.config.width/2, game.config.height/2 + 225, 'Press F to restart or ← for Menu', scoreConfig).setOrigin(0.5);
             this.gameOver = true;
         }, null, this);
 
+
+       
        
     
     }
 
     
     update(){
-        var winner;
+       
 
         let scoreConfig = {
             fontFamily: 'Shadows Into Light',
@@ -131,16 +137,21 @@ class Play extends Phaser.Scene{
 
         // endgame message
         scoreConfig.fixedWidth = 0;
+     
+        
+        var winner;
+        
         var t = true;
-       
-        if(this.gameOver && t == true){
+        if(this.gameOver && t){
             
             if(this.p1Score > this.p2Score){winner = "p l a y e r  1  w i n s !";}
             else if (this.p1Score < this.p2Score){winner = 'p l a y e r  2  w i n s !'}
             else { winner = "i t ' s  a  t i e";}
             this.add.text(game.config.width/2, game.config.height/2 - 210, winner, scoreConfig).setOrigin(0.5);
+            
             t = false;
-        }
+        }   
+
         
         //check key input for restart
         if(this.gameOver && Phaser.Input.Keyboard.JustDown(keyF)){

@@ -44,10 +44,6 @@ Some code are taken from Phaser tutorials and examples.
 
 
 
-
-
-
-
 let config = {
 
     type: Phaser.CANVAS, 
@@ -77,7 +73,7 @@ let WebFontConfig = {
     active: function() { game.time.events.add(Phaser.Timer.SECOND,createText, this);},
 
     google: {
-        families: ['Shadows Into Light', 'Permanent Marker']
+        families: ['Shadows Into Light']
     }
 
 };
