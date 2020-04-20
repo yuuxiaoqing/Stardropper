@@ -10,9 +10,9 @@ class Play extends Phaser.Scene{
         //load images/tiles sprite
         //load google webfont loader script
         this.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
-
+        
         //texture
-        //art done with pixilart.com 
+        //rocket art done with pixilart.com 
         this.load.image('rocket1', 'assets/rocket2.png');
         this.load.image('rocket2', 'assets/rocket1.png');
         this.load.image('star1', 'assets/star1.png');
@@ -30,6 +30,9 @@ class Play extends Phaser.Scene{
     create() {
     //override create() from phaser, which is blank
 
+        //play music
+        var theme = this.sound.add('theme');
+        theme.play();
         //place tile sprite
         this.sky = this.add.tileSprite(0,0,640,480,"sky").setOrigin(0,0);
         
@@ -131,6 +134,7 @@ class Play extends Phaser.Scene{
         var t = true;
        
         if(this.gameOver && t == true){
+            
             if(this.p1Score > this.p2Score){winner = "p l a y e r  1  w i n s !";}
             else if (this.p1Score < this.p2Score){winner = 'p l a y e r  2  w i n s !'}
             else { winner = "i t ' s  a  t i e";}
@@ -292,7 +296,7 @@ class Play extends Phaser.Scene{
         //add random burst after effect onto screen
         this.burst01 = this.add.sprite(ship.x, ship.y, 'nebula', 'nebula'+(Math.floor(Math.random()*5)+1));
         //add firework burst
-        this.burst02 = this.add.sprite(ship.x, ship.y, 'burst128', 'burst'+(Math.floor(Math.random()*4)+1));
+        this.burst02 = this.add.sprite(ship.x, ship.y, 'burst128', 'burst'+(Math.floor(Math.random()*5)+1));
         ship.reset(); //reset ship position
         ship.alpha =1; //make ship visible again
 

@@ -5,11 +5,14 @@ class Menu extends Phaser.Scene{
     preload(){
         //load audio
         this.load.audio('sfx_select', './assets/blip_select12.wav');
-        this.load.audio('sfx_explosion', './assets/explosion38.wav');
-        this.load.audio('sfx_rocket', './assets/rocket_shot.wav');
+        this.load.audio('sfx_explosion', './assets/Big_Explosion_Distant.wav');
+        this.load.audio('sfx_rocket', './assets/Laser_Gun.wav');
+        this.load.audio('theme', ['assets/Fairy_Meeting.wav']);
+
         this.load.image('title', './assets/title.png');
     }
     create() {
+        
         
         //stardropper title/menu screen
         this.add.image(game.config.width/2,game.config.height/2,'title');
