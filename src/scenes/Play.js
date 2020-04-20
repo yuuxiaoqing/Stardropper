@@ -36,7 +36,12 @@ class Play extends Phaser.Scene{
 
         //play music
         var theme = this.sound.add('theme');
+        //if(!this.gameOver){
         theme.play();
+        //}else{
+        //    theme.stop();
+        //}
+     
         //place tile sprite
         this.sky = this.add.tileSprite(0,0,640,480,"sky").setOrigin(0,0);
         
