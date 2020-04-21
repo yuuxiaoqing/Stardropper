@@ -1,7 +1,7 @@
 //two player mode
-class Play extends Phaser.Scene{
+class PlayTwo extends Phaser.Scene{
     constructor(){
-        super("playScene");
+        super("playTwoScene");
     }
 
  
@@ -54,7 +54,7 @@ class Play extends Phaser.Scene{
         //P1
         this.p1Rocket = new Rocket(this, game.config.width/2-100, 420, 'rocket1').setScale(0.5,0.5).setOrigin(0,0);
         //P2
-        //this.p2Rocket = new Rocket2(this, game.config.width/2+100, 420, 'rocket2').setScale(0.5,0.5).setOrigin(0,0);
+        this.p2Rocket = new Rocket2(this, game.config.width/2+100, 420, 'rocket2').setScale(0.5,0.5).setOrigin(0,0);
       
 
         //add more spaceships FIX HEIGHT
@@ -68,18 +68,17 @@ class Play extends Phaser.Scene{
         keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
         keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
 
-        /*
         //define keyboard keys for player 2 (UPLEFTRIGHT)
         keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
         //reset key
         keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
-        */
+
         //score 
         this.p1Score = 0;
 
-        //this.p2Score = 0;
+        this.p2Score = 0;
        
         
         //score + endscreen text display settings
@@ -99,7 +98,7 @@ class Play extends Phaser.Scene{
 
         this.scoreLeft = this.add.text(-10, 15, this.p1Score + " ★", scoreConfig).setOrigin(0,0);
 
-        //this.scoreRight = this.add.text(510, 15, this.p1Score + " ★", scoreConfig).setOrigin(0,0);
+        this.scoreRight = this.add.text(510, 15, this.p1Score + " ★", scoreConfig).setOrigin(0,0);
 
         // game over flag
         this.gameOver = false;
@@ -169,7 +168,7 @@ class Play extends Phaser.Scene{
         if (!this.gameOver ){
              //update rockets
             this.p1Rocket.update();
-            //this.p2Rocket.update();
+            this.p2Rocket.update();
             //update spaceships
             this.ship01.update();
             this.ship02.update();
@@ -230,7 +229,6 @@ class Play extends Phaser.Scene{
 
 
         // check collisions for p2
-        /*
         if(this.checkCollision(this.p1Rocket, this.ship03)){
             //console.log('kaboom ship 03');
             this.p2Rocket.reset();
@@ -275,7 +273,7 @@ class Play extends Phaser.Scene{
             this.p2Score += this.ship05.points;
             this.scoreRight.text = this.p2Score + " ★";
         }
-        */
+
 
         
     }

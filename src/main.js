@@ -22,6 +22,11 @@ both players as well as selected level difficulty instructions.
 I created this effect that every time a star is destroyed, it leaves behind a random nebula 
 sprite along with a random starburst sprite. I think that this is starting tier level,
 because I just added the images right after the explosion effect and so I think 10 points are justified. 
+
+some extra stuff:
+- Added music (10)
+- created new artwork for all of the in-game assets (25) or redesign game to change its theme (50)
+
 ------------------------------------------------------------------------------------
 My mod of Rocket Patrol is inspired by fireworks and summer festivals. So I decided to have
 a blank black background and every time the players hit a star, it explodes into many stars and 
@@ -49,7 +54,7 @@ let config = {
     type: Phaser.CANVAS, 
     width: 640,
     height: 480,
-    scene: [Menu, Play] // order of the classes matter, phaser does the first one first
+    scene: [Menu, Play, PlayTwo] // order of the classes matter, phaser does the first one first
 
 };
 
@@ -67,7 +72,7 @@ let keyW, keyA, keyD;
 let keyUP, keyLEFT, keyRIGHT;
 //reset key
 let keyF;
-
+let player2;
 //loading google text, taken from: https://phaser.io/examples/v2/text/google-webfonts
 let WebFontConfig = {
     active: function() { game.time.events.add(Phaser.Timer.SECOND,createText, this);},

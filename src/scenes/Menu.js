@@ -21,24 +21,44 @@ class Menu extends Phaser.Scene{
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
         keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
-
+        keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+       
 
 
     }
-
+    
     update(){
-       
+        player2 = false;
+        if(Phaser.Input.Keyboard.JustDown(keyF)){
+            this.add.text(50, 30, '2 Player Mode').setOrigin(0,0);
+            player2 = true;
+        }
+    
 
         if (Phaser.Input.Keyboard.JustDown(keyLEFT)){
-                //EASY level
+            //EASY level
             game.settings = {
                 spaceshipSpeed:3,
                 gameTimer:60000
             }
+            console.log("two players")
             this.sound.play('sfx_select');
-            this.scene.start("playScene");
-    
+            this.scene.start("playTwoScene");
+
         }
+        // if (Phaser.Input.Keyboard.JustDown(keyLEFT) && !player2){
+        //         //EASY level
+        //     game.settings = {
+        //         spaceshipSpeed:3,
+        //         gameTimer:60000
+        //     }
+        //     console.log("single player")
+        //     this.sound.play('sfx_select');
+        //     this.scene.start("playScene");
+    
+        // }
+        
+        
         if (Phaser.Input.Keyboard.JustDown(keyRIGHT)){
             //HARD level
             game.settings = {
@@ -46,9 +66,19 @@ class Menu extends Phaser.Scene{
                 gameTimer:25000
             }
             this.sound.play('sfx_select');
-            this.scene.start("playScene");
-        }
-        
+            this.scene.start("playTwoScene");
+         }
+        // if (Phaser.Input.Keyboard.JustDown(keyRIGHT) && !player2){
+        //     //HARD level
+        //     game.settings = {
+        //         spaceshipSpeed:5,
+        //         gameTimer:25000
+        //     }
+        //     this.sound.play('sfx_select');
+        //     this.scene.start("playScene");
+        // }
+ 
+       
        
     }
 }
